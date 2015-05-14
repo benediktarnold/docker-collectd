@@ -1,4 +1,4 @@
-FROM yaronr/debian-wheezy
+FROM ubuntu
 MAINTAINER benediktarnold
 
 ENV collectd_ver 5.4.2
@@ -9,7 +9,7 @@ ENV LOGSTASH_PORT 25826
 #ENV HOSTNAME -PLEASE SUPPLY!-
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends build-essential libcurl4-openssl-dev liblvm2-dev && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends curl build-essential libcurl4-openssl-dev liblvm2-dev && \
 	cd /opt && \
   	curl http://collectd.org/files/collectd-${collectd_ver}.tar.gz | tar zx && \
   	cd collectd-${collectd_ver} && \
@@ -17,7 +17,7 @@ RUN apt-get update && \
   	make && \
   	make install && \
   	rm -rf /opt/collectd-${collectd_ver} && \
-  	apt-get remove --purge -y build-essential && \
+  	apt-get remove --purge -y curl build-essential && \
   	apt-get clean && \
   	rm -rf /var/lib/apt/lists/*
 
