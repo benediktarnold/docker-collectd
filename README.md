@@ -6,3 +6,7 @@ docker-collectd
 -e LOGSTASH_SERVER=<..> defaults to 'logstash'
 
 -e LOGSTASH_PORT=..  defaults to 25826
+
+Build-In Plugins
+----------------
+* lvm

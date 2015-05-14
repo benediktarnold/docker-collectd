@@ -1,7 +1,7 @@
 FROM yaronr/debian-wheezy
-MAINTAINER yaronr
+MAINTAINER benediktarnold
 
-ENV collectd_ver 5.4.1
+ENV collectd_ver 5.4.2
 ENV basedir /opt/collectd
 
 ENV LOGSTASH_SERVER logstash
@@ -9,11 +9,11 @@ ENV LOGSTASH_PORT 25826
 #ENV HOSTNAME -PLEASE SUPPLY!-
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends build-essential libcurl4-openssl-dev && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends build-essential libcurl4-openssl-dev liblvm2-dev && \
 	cd /opt && \
   	curl http://collectd.org/files/collectd-${collectd_ver}.tar.gz | tar zx && \
   	cd collectd-${collectd_ver} && \
-  	./configure --prefix=${basedir} && \
+  	./configure --prefix=${basedir} --with-plugin=lvm && \
   	make && \
   	make install && \
   	rm -rf /opt/collectd-${collectd_ver} && \
