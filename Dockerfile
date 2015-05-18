@@ -9,7 +9,7 @@ ENV LOGSTASH_PORT 25826
 #ENV HOSTNAME -PLEASE SUPPLY!-
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends curl build-essential libcurl4-openssl-dev liblvm2-dev && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends curl build-essential libcurl4-openssl-dev liblvm2-dev libxml2 libxslt-dev python python-pip python-dev && \
 	cd /opt && \
   	curl http://collectd.org/files/collectd-${collectd_ver}.tar.gz | tar zx && \
   	cd collectd-${collectd_ver} && \
