@@ -10,3 +10,4 @@ docker-collectd
 Build-In Plugins
 ----------------
 * lvm
+* python
